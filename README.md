@@ -1,66 +1,210 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel POS System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A simple Point of Sale (POS) system built with Laravel for managing products, categories, sales, and sale items.
 
-## About Laravel
+## Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+-   [Features](#features)
+-   [Requirements](#requirements)
+-   [Getting Started](#getting-started)
+    -   [Installation](#installation)
+    -   [Database Setup](#database-setup)
+    -   [Running Migrations](#running-migrations)
+    -   [API Endpoints](#api-endpoints)
+-   [Usage](#usage)
+-   [Contributing](#contributing)
+-   [License](#license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   Manage products and categories
+-   Record sales and sale items
+-   API endpoints for interacting with the system
 
-## Learning Laravel
+## Requirements
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   PHP >= 7.4
+-   Composer
+-   MySQL or any other supported database
+-   Node.js and npm (for frontend development, if applicable)
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Getting Started
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Installation
 
-## Laravel Sponsors
+1. Clone the repository:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+    ```bash
+    git clone https://github.com/your-username/laravel-pos-system.git
+    ```
 
-### Premium Partners
+2. Navigate to the project directory:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+    ```bash
+    cd laravel-pos-system
+    ```
+
+3. Install dependencies:
+
+    ```bash
+    composer install
+    ```
+
+### Database Setup
+
+1. Create a new MySQL database for the POS system.
+
+2. Copy the `.env.example` file to `.env`:
+
+    ```bash
+    cp .env.example .env
+    ```
+
+3. Update the database configuration in the `.env` file with your database credentials:
+
+    ```env
+    DB_CONNECTION=mysql
+    DB_HOST=your-database-host
+    DB_PORT=your-database-port
+    DB_DATABASE=your-database-name
+    DB_USERNAME=your-database-username
+    DB_PASSWORD=your-database-password
+    ```
+
+### Running Migrations
+
+Run the database migrations to create the necessary tables:
+
+```bash
+php artisan migrate
+```
+
+### API Endpoints
+
+Here are the available API endpoints for managing categories, products, sales, and sale items:
+
+#### Categories
+
+-   **Get All Categories**
+
+    -   Endpoint: `GET /categories`
+    -   Description: Retrieve a list of all categories.
+
+-   **Create a Category**
+
+    -   Endpoint: `POST /categories`
+    -   Description: Create a new category.
+
+-   **Get a Category by ID**
+
+    -   Endpoint: `GET /categories/{category}`
+    -   Description: Retrieve details of a specific category by its ID.
+
+-   **Update a Category by ID**
+
+    -   Endpoint: `PUT /categories/{category}`
+    -   Description: Update details of a specific category by its ID.
+
+-   **Delete a Category by ID**
+    -   Endpoint: `DELETE /categories/{category}`
+    -   Description: Delete a specific category by its ID.
+
+#### Products
+
+-   **Get All Products**
+
+    -   Endpoint: `GET /products`
+    -   Description: Retrieve a list of all products.
+
+-   **Create a Product**
+
+    -   Endpoint: `POST /products`
+    -   Description: Create a new product.
+
+-   **Get a Product by ID**
+
+    -   Endpoint: `GET /products/{product}`
+    -   Description: Retrieve details of a specific product by its ID.
+
+-   **Update a Product by ID**
+
+    -   Endpoint: `PUT /products/{product}`
+    -   Description: Update details of a specific product by its ID.
+
+-   **Delete a Product by ID**
+    -   Endpoint: `DELETE /products/{product}`
+    -   Description: Delete a specific product by its ID.
+
+#### Sales
+
+-   **Get All Sales**
+
+    -   Endpoint: `GET /sales`
+    -   Description: Retrieve a list of all sales.
+
+-   **Create a Sale**
+
+    -   Endpoint: `POST /sales`
+    -   Description: Record a new sale.
+
+-   **Get a Sale by ID**
+
+    -   Endpoint: `GET /sales/{sale}`
+    -   Description: Retrieve details of a specific sale by its ID.
+
+-   **Update a Sale by ID**
+
+    -   Endpoint: `PUT /sales/{sale}`
+    -   Description: Update details of a specific sale by its ID.
+
+-   **Delete a Sale by ID**
+    -   Endpoint: `DELETE /sales/{sale}`
+    -   Description: Delete a specific sale by its ID.
+
+#### Sale Items
+
+-   **Get All Sale Items**
+
+    -   Endpoint: `GET /sale-items`
+    -   Description: Retrieve a list of all sale items.
+
+-   **Create a Sale Item**
+
+    -   Endpoint: `POST /sale-items`
+    -   Description: Record a new sale item.
+
+-   **Get a Sale Item by ID**
+
+    -   Endpoint: `GET /sale-items/{saleItem}`
+    -   Description: Retrieve details of a specific sale item by its ID.
+
+-   **Update a Sale Item by ID**
+
+    -   Endpoint: `PUT /sale-items/{saleItem}`
+    -   Description: Update details of a specific sale item by its ID.
+
+-   **Delete a Sale Item by ID**
+    -   Endpoint: `DELETE /sale-items/{saleItem}`
+    -   Description: Delete a specific sale item by its ID.
+
+## Usage
+
+1. Start the development server:
+
+    ```bash
+    php artisan serve
+    ```
+
+2. Access the application at [http://localhost:8000](http://localhost:8000).
+
+3. Use the provided API endpoints for interacting with the system.
 
 ## Contributing
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Contributions are welcome! Feel free to open issues or pull requests.
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is provided as-is without any explicit license. It is a public project on the internet, and you are free to use, modify, and distribute the code at your own risk. There are no warranties or guarantees associated with this project.
+
+If you have any questions or concerns, feel free to contact the project owner via email at `patrickwide254@gmail.com`

@@ -21,6 +21,14 @@ class SaleController extends Controller
 
         $sale = Sale::create($request->all());
 
+        foreach ($request->input('items', []) as $item) {
+            SaleItem::create([
+                'sale_id' => $sale->id,
+                'product_id' => $item['product_id'],
+                'quantity' => $item['quantity'],
+            ]);
+        }
+
         return response()->json($sale, 201);
     }
 
