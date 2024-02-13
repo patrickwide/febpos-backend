@@ -9,6 +9,7 @@ class Sale extends Model
 {
     use HasFactory;
 
+    protected $table = 'tbl_sales';
     protected $primaryKey = 'sale_id';
     protected $fillable = ['sale_date', 'vat', 'discount'];
 
