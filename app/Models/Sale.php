@@ -11,7 +11,7 @@ class Sale extends Model
 
     protected $table = 'tbl_sales';
     protected $primaryKey = 'sale_id';
-    protected $fillable = ['vat', 'discount'];
+    protected $fillable = [ 'sale_date', 'vat', 'discount'];
 
     public function saleItems()
     {

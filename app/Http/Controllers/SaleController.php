@@ -18,6 +18,7 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'sale_date' => 'nullable|date',
             'vat' => 'boolean',
             'discount' => 'numeric',
             'items' => 'array',
@@ -26,9 +27,18 @@ class SaleController extends Controller
         ]);
         
         $sale = new Sale();
+
         $sale->vat = $request->input('vat');
+        
+        // Check if 'sale_date' is provided in the request
+        if ($request->has('sale_date')) {
+            $sale->sale_date = $request->input('sale_date');
+        }
+        
         $sale->discount = $request->input('discount');
+        
         $sale->save();
+        
         
         foreach ($request->input('items', []) as $item) {
             SaleItem::create([

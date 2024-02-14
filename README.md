@@ -89,25 +89,62 @@ Here are the available API endpoints for managing categories, products, sales, a
 
     -   Endpoint: `GET /categories`
     -   Description: Retrieve a list of all categories.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/categories
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Create a Category**
 
     -   Endpoint: `POST /categories`
     -   Description: Create a new category.
+    -   Example:
+        ```bash
+        curl -X POST -H "Content-Type: application/json" -d '{"category_name": "New Category"}' http://127.0.0.1:8000/api/categories
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "category_name": "string"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Get a Category by ID**
 
     -   Endpoint: `GET /categories/{category}`
     -   Description: Retrieve details of a specific category by its ID.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/categories/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Update a Category by ID**
 
     -   Endpoint: `PUT /categories/{category}`
     -   Description: Update details of a specific category by its ID.
+    -   Example:
+        ```bash
+        curl -X PUT -H "Content-Type: application/json" -d '{"category_name": "Updated Category"}' http://127.0.0.1:8000/api/categories/1
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "category_name": "string"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Delete a Category by ID**
     -   Endpoint: `DELETE /categories/{category}`
     -   Description: Delete a specific category by its ID.
+    -   Example:
+        ```bash
+        curl -X DELETE http://127.0.0.1:8000/api/categories/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 #### Products
 
@@ -115,25 +152,70 @@ Here are the available API endpoints for managing categories, products, sales, a
 
     -   Endpoint: `GET /products`
     -   Description: Retrieve a list of all products.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/products
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Create a Product**
 
     -   Endpoint: `POST /products`
     -   Description: Create a new product.
+    -   Example:
+        ```bash
+        curl -X POST -H "Content-Type: application/json" -d '{"product_name": "New Product", "unit": "kg", "price": 10, "description": "Description", "category_id": 1}' http://127.0.0.1:8000/api/products
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "product_name": "string",
+            "unit": "string",
+            "price": "numeric",
+            "description": "string",
+            "category_id": "integer"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Get a Product by ID**
 
     -   Endpoint: `GET /products/{product}`
     -   Description: Retrieve details of a specific product by its ID.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/products/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Update a Product by ID**
 
     -   Endpoint: `PUT /products/{product}`
     -   Description: Update details of a specific product by its ID.
+    -   Example:
+        ```bash
+        curl -X PUT -H "Content-Type: application/json" -d '{"product_name": "Updated Product", "unit": "kg", "price": 15, "description": "Updated Description", "category_id": 2}' http://127.0.0.1:8000/api/products/1
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "product_name": "string",
+            "unit": "string",
+            "price": "numeric",
+            "description": "string",
+            "category_id": "integer"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Delete a Product by ID**
     -   Endpoint: `DELETE /products/{product}`
     -   Description: Delete a specific product by its ID.
+    -   Example:
+        ```bash
+        curl -X DELETE http://127.0.0.1:8000/api/products/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 #### Sales
 
@@ -141,25 +223,73 @@ Here are the available API endpoints for managing categories, products, sales, a
 
     -   Endpoint: `GET /sales`
     -   Description: Retrieve a list of all sales.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/sales
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Create a Sale**
 
     -   Endpoint: `POST /sales`
     -   Description: Record a new sale.
+    -   Example:
+        ```bash
+        curl -X POST -H "Content-Type: application/json" -d '{"vat": true, "discount": 5, "items": [{"product_id": 1, "quantity": 2}, {"product_id": 2, "quantity": 1}]}' http://127.0.0.1:8000/api/sales
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "vat": "boolean",
+            "discount": "numeric",
+            "items": [
+                {
+                    "product_id": "integer",
+                    "quantity": "integer"
+                },
+                ...
+            ]
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Get a Sale by ID**
 
     -   Endpoint: `GET /sales/{sale}`
     -   Description: Retrieve details of a specific sale by its ID.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/sales/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with
+
+your API URL.
 
 -   **Update a Sale by ID**
 
     -   Endpoint: `PUT /sales/{sale}`
     -   Description: Update details of a specific sale by its ID.
+    -   Example:
+        ```bash
+        curl -X PUT -H "Content-Type: application/json" -d '{"vat": true, "discount": 10}' http://127.0.0.1:8000/api/sales/1
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "vat": "boolean",
+            "discount": "numeric"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Delete a Sale by ID**
     -   Endpoint: `DELETE /sales/{sale}`
     -   Description: Delete a specific sale by its ID.
+    -   Example:
+        ```bash
+        curl -X DELETE http://127.0.0.1:8000/api/sales/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 #### Sale Items
 
@@ -167,25 +297,46 @@ Here are the available API endpoints for managing categories, products, sales, a
 
     -   Endpoint: `GET /sale-items`
     -   Description: Retrieve a list of all sale items.
-
--   **Create a Sale Item**
-
-    -   Endpoint: `POST /sale-items`
-    -   Description: Record a new sale item.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/sale-items
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Get a Sale Item by ID**
 
     -   Endpoint: `GET /sale-items/{saleItem}`
     -   Description: Retrieve details of a specific sale item by its ID.
+    -   Example:
+        ```bash
+        curl -X GET http://127.0.0.1:8000/api/sale-items/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Update a Sale Item by ID**
 
     -   Endpoint: `PUT /sale-items/{saleItem}`
     -   Description: Update details of a specific sale item by its ID.
+    -   Example:
+        ```bash
+        curl -X PUT -H "Content-Type: application/json" -d '{"quantity": 3}' http://127.0.0.1:8000/api/sale-items/1
+        ```
+    -   Data Expected:
+        ```json
+        {
+            "quantity": "integer"
+        }
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 -   **Delete a Sale Item by ID**
     -   Endpoint: `DELETE /sale-items/{saleItem}`
     -   Description: Delete a specific sale item by its ID.
+    -   Example:
+        ```bash
+        curl -X DELETE http://127.0.0.1:8000/api/sale-items/1
+        ```
+    -   Note: Replace `http://127.0.0.1:8000` with your API URL.
 
 ## Usage
 
