@@ -11,19 +11,6 @@ class SaleItemsController extends Controller
         return SaleItem::with('product', 'sale')->get();
     }
 
-    public function store(Request $request)
-    {
-        $request->validate([
-            'product_id' => 'required|exists:tbl_products,product_id',
-            'sale_id' => 'required|exists:tbl_sales,sale_id',
-            'quantity' => 'required|integer',
-        ]);
-
-        $saleItem = SaleItem::create($request->all());
-
-        return response()->json($saleItem, 201);
-    }
-
     public function show(SaleItem $saleItem)
     {
         return $saleItem;
