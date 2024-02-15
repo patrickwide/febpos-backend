@@ -35,13 +35,13 @@ A simple Point of Sale (POS) system built with Laravel for managing products, ca
 1. Clone the repository:
 
     ```bash
-    git clone https://github.com/your-username/laravel-pos-system.git
+    git clone https://github.com/patrickwide/febpos-backend.git
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd laravel-pos-system
+    cd febpos-backend
     ```
 
 3. Install dependencies:
