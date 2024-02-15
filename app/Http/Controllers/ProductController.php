@@ -9,9 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return Product::with('category')->get();
+        return Product::with('category')->orderBy('created_at', 'desc')->get();
     }
-
+    
     public function store(Request $request)
     {
         $request->validate([

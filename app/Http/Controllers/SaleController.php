@@ -9,10 +9,10 @@ class SaleController extends Controller
 {
     public function index()
     {
-      // Eager load the 'items' relationship
-      $sales = Sale::with('saleItems')->get();
+        // Eager load the 'saleItems' and 'product' relationships
+        $sales = Sale::with(['saleItems', 'saleItems.product'])->orderBy('created_at', 'desc')->get();
 
-      return $sales;
+        return $sales;
     }
 
     public function store(Request $request)
@@ -20,44 +20,68 @@ class SaleController extends Controller
         $request->validate([
             'sale_date' => 'nullable|date',
             'vat' => 'boolean',
-            'discount' => 'numeric',
+            'discount' => 'nullable|numeric',
             'items' => 'array',
             'items.*.product_id' => 'required|exists:tbl_products,product_id',
             'items.*.quantity' => 'required|integer|min:1',
         ]);
-        
+
         $sale = new Sale();
 
         $sale->vat = $request->input('vat');
-        
+
         // Check if 'sale_date' is provided in the request
         if ($request->has('sale_date')) {
             $sale->sale_date = $request->input('sale_date');
         }
-        
+
         $sale->discount = $request->input('discount');
-        
+
         $sale->save();
-        
-        
+
+        $sub_total = 0;
+        $products = [];
         foreach ($request->input('items', []) as $item) {
-            SaleItem::create([
+            $saleItem = SaleItem::create([
                 'sale_id' => $sale->sale_id,
                 'product_id' => $item['product_id'],
                 'quantity' => $item['quantity'],
             ]);
+
+            // Assuming the product price is available
+            $sub_total += $saleItem->product->price * $item['quantity'];
+
+            // Add the product data to the products array
+            $products[] = $saleItem->product;
         }
-    
+
+        $vat = 0;
+        if ($sale->vat) {
+            // Get the VAT rate from the configuration
+            $vat_rate = config('constants.vat_rate');
+            $vat = $sub_total * ($vat_rate / 100);
+        }
+        $totalAfterDiscount = $sub_total - $sale->discount;
+
+        $total = $totalAfterDiscount + $vat;
+
         return response()->json([
             'message' => 'Sale and items added successfully.',
             'sale' => $sale,
+            'products' => $products,
+            'sub_total' => $sub_total,
+            'vat' => $vat,
+            'total_after_discount' => $totalAfterDiscount,
+            'total' => $total,
         ], 201);
     }
+
+    
     
     public function show(Sale $sale)
     {
         // Eager load the 'items' relationship
-        $sale = $sale->load('saleItems');
+        $sale = $sale->load('saleItems', 'saleItems.product');
     
         return $sale;
     }

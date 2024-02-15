@@ -19,7 +19,7 @@ class SaleFactory extends Factory
     public function definition(): array
     {
         return [
-            'sale_date' => $this->faker->dateTimeThisMonth,
+            'sale_date' => $this->faker->dateTimeThisMonth->format('Y-m-d'),
             'vat' => $this->faker->boolean,
             'discount' => $this->faker->randomFloat(2, 0, 10),
         ];

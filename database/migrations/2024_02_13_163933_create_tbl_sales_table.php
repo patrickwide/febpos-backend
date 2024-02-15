@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('tbl_sales', function (Blueprint $table) {
             $table->id('sale_id');
-            $table->timestamp('sale_date')->default(now());
+            $table->date('sale_date')->default(now());
             $table->boolean('vat')->default(false);
             $table->decimal('discount', 10, 2)->default(0.00);
             $table->timestamps();
