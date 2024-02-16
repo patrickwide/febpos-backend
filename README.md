@@ -346,7 +346,7 @@ your API URL.
     php artisan serve
     ```
     
-- NOTE - To run in test mode run `php artisan seed`
+- note - To run in test mode run `php artisan seed` to generate some dammy data.
 
 2. Access the application at [http://localhost:8000](http://localhost:8000).
 
